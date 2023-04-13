@@ -20,6 +20,9 @@ public class JwtUtil {
     // 令牌秘钥
     private static final String JWT_KEY = "123456";
 
+    /**
+     * 创建 Token
+     */
     public  String createToken(Object data){
         // 当前时间
         long currentTime = System.currentTimeMillis();
@@ -42,6 +45,9 @@ public class JwtUtil {
         return  aes;
     }
 
+    /**
+     * 解析 Token
+     */
     public  Claims parseToken(String token){
         Claims body = Jwts.parser()
                 .setSigningKey(encodeSecret(JWT_KEY))
