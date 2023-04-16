@@ -28,7 +28,7 @@ public class JwtValidateInterceptor implements HandlerInterceptor {
                 log.debug(request.getRequestURI() + "验证通过");
                 return true;
             } catch (Exception e) {
-//                e.printStackTrace();
+                e.printStackTrace();
             }
         }
         log.debug(request.getRequestURI() + "验证失败,禁止访问");

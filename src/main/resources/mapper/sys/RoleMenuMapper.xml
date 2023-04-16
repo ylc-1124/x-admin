@@ -2,4 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.sust.sys.mapper.RoleMenuMapper">
 
+    <select id="selectMenuIdListByRoleId" resultType="java.lang.Integer">
+        SELECT rm.menu_id
+        FROM x_role_menu rm,
+             x_menu m
+        WHERE rm.menu_id = m.menu_id
+          and m.is_leaf = 'Y'
+          and role_id = #{roleId}
+    </select>
 </mapper>

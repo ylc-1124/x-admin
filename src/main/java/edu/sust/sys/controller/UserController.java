@@ -94,7 +94,9 @@ public class UserController {
     @PostMapping("/add")
     public Result<?> addUser(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userService.save(user);
+        //设置默认头像
+        user.setAvatar("https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+        userService.addUser(user);
         return Result.success("用户添加成功");
     }
 
@@ -103,8 +105,7 @@ public class UserController {
      */
     @PutMapping("/update")
     public Result<?> updateUser(@RequestBody User user) {
-        user.setPassword(null);
-        userService.updateById(user); //字段为空的不会更新
+        userService.updateUser(user);
         return Result.success("修改用户成功");
     }
 
@@ -113,7 +114,7 @@ public class UserController {
      */
     @GetMapping("/{id}")
     public Result<User> getUserById(@PathVariable("id") Integer id) {
-        User user = userService.getById(id);
+        User user = userService.getUserById(id);
         return Result.success(user);
     }
 
@@ -122,7 +123,7 @@ public class UserController {
      */
     @DeleteMapping("/delete/{id}")
     public Result<?> deleteUser(@PathVariable("id") Integer id) {
-        userService.removeById(id); //逻辑删除
+        userService.deleteUser(id); //逻辑删除
         return Result.success("删除用户成功");
     }
 

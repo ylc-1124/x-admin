@@ -3,6 +3,8 @@ package edu.sust.sys.mapper;
 import edu.sust.sys.entity.UserRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口

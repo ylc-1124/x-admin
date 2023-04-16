@@ -4,12 +4,16 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import edu.sust.common.vo.Result;
 import edu.sust.sys.entity.Role;
+import edu.sust.sys.entity.RoleMenu;
+import edu.sust.sys.service.IRoleMenuService;
 import edu.sust.sys.service.IRoleService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +26,7 @@ import java.util.Map;
  * @author ylc
  * @since 2023-03-14
  */
-@Controller
+@RestController
 @RequestMapping("/role")
 public class RoleController {
     @Autowired
@@ -58,7 +62,7 @@ public class RoleController {
      */
     @PostMapping("/add")
     public Result<?> addRole(@RequestBody Role role) {
-        roleService.save(role);
+        roleService.addRole(role);
         return Result.success("角色添加成功");
     }
 
@@ -67,7 +71,7 @@ public class RoleController {
      */
     @PutMapping("/update")
     public Result<?> updateRole(@RequestBody Role role) {
-        roleService.updateById(role);
+        roleService.updateRole(role);
         return Result.success("修改角色成功");
     }
 
@@ -76,7 +80,7 @@ public class RoleController {
      */
     @GetMapping("/{id}")
     public Result<Role> getRoleById(@PathVariable("id") Integer id) {
-        Role role = roleService.getById(id);
+        Role role = roleService.getRoleById(id);
         return Result.success(role);
     }
 
@@ -84,8 +88,8 @@ public class RoleController {
      * 删除角色
      */
     @DeleteMapping("/delete/{id}")
-    public Result<?> deleteRole(@PathVariable("id") Integer id) {
-        roleService.removeById(id); //逻辑删除
+    public Result<?> deleteRoleById(@PathVariable("id") Integer id) {
+        roleService.deleteRoleById(id); //逻辑删除
         return Result.success("删除角色成功");
     }
 }

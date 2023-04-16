@@ -21,4 +21,11 @@ public interface IUserService extends IService<User> {
 
     void logout(String token);
 
+    void addUser(User user);
+
+    User getUserById(Integer id);
+
+    void updateUser(User user);
+
+    void deleteUser(Integer id);
 }
